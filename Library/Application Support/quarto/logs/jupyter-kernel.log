@@ -1,0 +1,34 @@
+2026-04-15 03:57:10,792 - traitlets - ERROR - [Errno 1] Operation not permitted
+Traceback (most recent call last):
+  File "/Users/aadiawasthi/Documents/New project/.venv/lib/python3.11/site-packages/jupyter_client/manager.py", line 88, in wrapper
+    out = await method(self, *args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aadiawasthi/Documents/New project/.venv/lib/python3.11/site-packages/jupyter_client/manager.py", line 441, in _async_start_kernel
+    kernel_cmd, kw = await self._async_pre_start_kernel(**kw)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aadiawasthi/Documents/New project/.venv/lib/python3.11/site-packages/jupyter_client/manager.py", line 406, in _async_pre_start_kernel
+    kw = await self.provisioner.pre_launch(**kw)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aadiawasthi/Documents/New project/.venv/lib/python3.11/site-packages/jupyter_client/provisioning/local_provisioner.py", line 193, in pre_launch
+    km.shell_port = lpc.find_available_port(km.ip)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aadiawasthi/Documents/New project/.venv/lib/python3.11/site-packages/jupyter_client/connect.py", line 705, in find_available_port
+    tmp_sock.bind((ip, 0))
+PermissionError: [Errno 1] Operation not permitted
+2026-04-15 03:57:32,362 - traitlets - ERROR - [Errno 1] Operation not permitted
+Traceback (most recent call last):
+  File "/Users/aadiawasthi/Documents/New project/.venv/lib/python3.11/site-packages/jupyter_client/manager.py", line 88, in wrapper
+    out = await method(self, *args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aadiawasthi/Documents/New project/.venv/lib/python3.11/site-packages/jupyter_client/manager.py", line 441, in _async_start_kernel
+    kernel_cmd, kw = await self._async_pre_start_kernel(**kw)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aadiawasthi/Documents/New project/.venv/lib/python3.11/site-packages/jupyter_client/manager.py", line 406, in _async_pre_start_kernel
+    kw = await self.provisioner.pre_launch(**kw)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aadiawasthi/Documents/New project/.venv/lib/python3.11/site-packages/jupyter_client/provisioning/local_provisioner.py", line 193, in pre_launch
+    km.shell_port = lpc.find_available_port(km.ip)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aadiawasthi/Documents/New project/.venv/lib/python3.11/site-packages/jupyter_client/connect.py", line 705, in find_available_port
+    tmp_sock.bind((ip, 0))
+PermissionError: [Errno 1] Operation not permitted

@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "appendix.html",
+    "href": "appendix.html",
+    "title": "Appendix",
+    "section": "",
+    "text": "The project is designed to run from a clean environment with Python 3.11+. The main analysis script downloads the public LUAD RNA-seq matrix, LUAD clinical matrix, and TCGA survival table from UCSC Xena endpoints, caches those files locally, and writes all downstream outputs into the results/ directory."
+  },
+  {
+    "objectID": "appendix.html#reproducibility-notes",
+    "href": "appendix.html#reproducibility-notes",
+    "title": "Appendix",
+    "section": "",
+    "text": "The project is designed to run from a clean environment with Python 3.11+. The main analysis script downloads the public LUAD RNA-seq matrix, LUAD clinical matrix, and TCGA survival table from UCSC Xena endpoints, caches those files locally, and writes all downstream outputs into the results/ directory."
+  },
+  {
+    "objectID": "appendix.html#command-line-workflow",
+    "href": "appendix.html#command-line-workflow",
+    "title": "Appendix",
+    "section": "2 Command-line workflow",
+    "text": "2 Command-line workflow\npython -m pip install -r requirements.txt\nquarto render\nIf you want to force a fresh data download, run:\npython -m src.analysis --force-download"
+  },
+  {
+    "objectID": "appendix.html#output-files",
+    "href": "appendix.html#output-files",
+    "title": "Appendix",
+    "section": "3 Output files",
+    "text": "3 Output files\nAfter a successful render, the key outputs are:\n\nresults/tables/sample_summary.csv\nresults/tables/top_differential_expression.csv\nresults/tables/classifier_summary.csv\nresults/tables/top_biomarker.csv\nresults/figures/pca.png\nresults/figures/volcano.png\nresults/figures/heatmap_top_genes.png\nresults/figures/classifier_roc.png\nresults/figures/kaplan_meier_top_biomarker.png"
+  },
+  {
+    "objectID": "appendix.html#extension-ideas",
+    "href": "appendix.html#extension-ideas",
+    "title": "Appendix",
+    "section": "4 Extension ideas",
+    "text": "4 Extension ideas\nThe project can be strengthened further by adding one or more of the following:\n\nvalidation in an external LUAD cohort from GEO;\nintegration of mutation or copy-number data;\ngene-set scoring at the sample level;\nconsensus feature selection across several classifier families;\nmulti-omic follow-up using CPTAC LUAD proteomics."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Transcriptomic Biomarker Discovery in Lung Adenocarcinoma",
+    "section": "",
+    "text": "Lung adenocarcinoma is the most common histologic subtype of lung cancer and remains a major cause of cancer mortality worldwide (The Cancer Genome Atlas Research Network 2014). Public transcriptomic resources have made it possible to study disease-associated expression programs at scale, yet many student projects stop at simple visual summaries rather than building a complete and reproducible analysis pipeline. This project develops a publication-style workflow around TCGA lung adenocarcinoma RNA-seq data distributed through UCSC Xena, integrating tumor-versus-normal differential-expression screening, pathway enrichment, cross-validated classification, and survival-oriented candidate prioritization (Goldman et al. 2020; Weinstein et al. 2013; National Cancer Institute Genomic Data Commons 2026a). The goal is not to claim a clinically validated biomarker from a single open dataset, but to demonstrate how public cancer transcriptomic data can be translated into a coherent biomarker-discovery workflow with transparent methods and interpretable outputs."
+  },
+  {
+    "objectID": "index.html#abstract",
+    "href": "index.html#abstract",
+    "title": "Transcriptomic Biomarker Discovery in Lung Adenocarcinoma",
+    "section": "",
+    "text": "Lung adenocarcinoma is the most common histologic subtype of lung cancer and remains a major cause of cancer mortality worldwide (The Cancer Genome Atlas Research Network 2014). Public transcriptomic resources have made it possible to study disease-associated expression programs at scale, yet many student projects stop at simple visual summaries rather than building a complete and reproducible analysis pipeline. This project develops a publication-style workflow around TCGA lung adenocarcinoma RNA-seq data distributed through UCSC Xena, integrating tumor-versus-normal differential-expression screening, pathway enrichment, cross-validated classification, and survival-oriented candidate prioritization (Goldman et al. 2020; Weinstein et al. 2013; National Cancer Institute Genomic Data Commons 2026a). The goal is not to claim a clinically validated biomarker from a single open dataset, but to demonstrate how public cancer transcriptomic data can be translated into a coherent biomarker-discovery workflow with transparent methods and interpretable outputs."
+  },
+  {
+    "objectID": "index.html#introduction",
+    "href": "index.html#introduction",
+    "title": "Transcriptomic Biomarker Discovery in Lung Adenocarcinoma",
+    "section": "2 Introduction",
+    "text": "2 Introduction\nThe Cancer Genome Atlas (TCGA) transformed cancer research by generating molecular profiles across dozens of tumor types and matched normal samples, enabling systematic characterization of tumor-associated transcriptomic programs (Weinstein et al. 2013). Within TCGA, lung adenocarcinoma (LUAD) emerged as a biologically heterogeneous disease marked by recurrent alterations in receptor tyrosine kinase, RAS, and PI3K pathway signaling, together with substantial variation in gene-expression states and clinical outcomes (The Cancer Genome Atlas Research Network 2014). As a result, LUAD remains a strong setting in which to test computational workflows for candidate biomarker discovery.\nFor internship- and research-oriented work, the most useful project is not simply one that runs, but one that mirrors how real translational analyses are assembled. That means acquiring public molecular and clinical data, carrying out differential analysis with appropriate transparency about data scale and preprocessing, identifying pathway-level structure rather than only single-gene changes, and asking whether the most discriminative genes also carry prognostic relevance. This project was built to do exactly that: take a biologically meaningful cancer question and turn it into a reproducible end-to-end transcriptomic workflow.\nThe present analysis asks a focused question: which transcriptomic features best distinguish lung adenocarcinoma from matched normal tissue in TCGA, and can any of those features be prioritized as plausible biomarker candidates on both diagnostic and prognostic grounds?"
+  },
+  {
+    "objectID": "index.html#data-and-cohort-construction",
+    "href": "index.html#data-and-cohort-construction",
+    "title": "Transcriptomic Biomarker Discovery in Lung Adenocarcinoma",
+    "section": "3 Data and cohort construction",
+    "text": "3 Data and cohort construction\nThis project uses publicly available LUAD RNA-seq and clinical resources distributed through UCSC Xena and the NCI Genomic Data Commons (Goldman et al. 2020; National Cancer Institute Genomic Data Commons 2026a). The expression matrix is the LUAD HiSeqV2 dataset from UCSC Xena, which has been described in Xena-linked documentation and downstream studies as log2-transformed RSEM-normalized counts (Wang and Liu 2019; Givechian et al. 2019). Sample groups were defined by TCGA barcode sample-type conventions, where code 01 indicates primary solid tumor and code 11 indicates solid tissue normal (National Cancer Institute Genomic Data Commons 2026a, 2026b). Overall-survival information was obtained from the UCSC Xena TCGA_survival_data resource, which curates event status and time-to-event variables derived from TCGA clinical information (UCSC Cancer Genomics Browser team 2013).\nThe analytic cohort retained only LUAD primary-tumor and solid-tissue-normal samples.\n\n\n\n\n\n\n\n\n\nsample_type\nsamples\npatients\nnon_missing_stage_annotations\n\n\n\n\n0\nPrimary tumor\n515\n515\n574\n\n\n1\nSolid tissue normal\n59\n59\n117"
+  },
+  {
+    "objectID": "index.html#methods",
+    "href": "index.html#methods",
+    "title": "Transcriptomic Biomarker Discovery in Lung Adenocarcinoma",
+    "section": "4 Methods",
+    "text": "4 Methods\n\n4.1 Differential-expression screening\nBecause the LUAD HiSeqV2 matrix is distributed as log2-transformed normalized expression rather than raw counts, the present workflow uses transparent screening-style differential analysis on normalized expression values rather than a count-based DESeq2 model. For each gene, tumor and normal samples were compared using Welch’s t-test, and resulting p-values were adjusted using the Benjamini–Hochberg false-discovery-rate procedure. Effect sizes were summarized as tumor-normal log2 expression differences and Cohen’s (d).\nGenes were treated as strongly dysregulated when they satisfied both an FDR threshold below 0.05 and an absolute tumor-normal log2 difference greater than 1.0.\n\n\n4.2 Classification\nTo test whether the transcriptomic signal was sufficiently strong to discriminate tumor from normal tissue, a sparse logistic-regression classifier was trained on the top differentially expressed genes. Model performance was estimated with repeated stratified cross-validation using ROC AUC and average precision.\n\n\n4.3 Candidate-biomarker prioritization\nThe pipeline next asked whether any of the strongest upregulated genes also carried prognostic information. Candidate genes were screened among the most significant overexpressed transcripts, merged with TCGA survival information at the patient level, and evaluated by log-rank testing and one-gene Cox proportional-hazards models. This step does not constitute clinical validation, but it helps distinguish genes that are merely dysregulated from genes that may also track with patient outcome.\n\n\n4.4 Pathway enrichment\nTo move beyond single-gene summaries, the top upregulated and downregulated gene sets were optionally submitted to Enrichr for pathway and biological-process enrichment (Kuleshov et al. 2016; Xie et al. 2021). This step is coded to run automatically when an internet connection is available at render time."
+  },
+  {
+    "objectID": "index.html#results",
+    "href": "index.html#results",
+    "title": "Transcriptomic Biomarker Discovery in Lung Adenocarcinoma",
+    "section": "5 Results",
+    "text": "5 Results\n\n5.1 Global separation between tumor and normal samples\nThe sample-composition plot confirms the expected imbalance between tumor and normal tissues in TCGA LUAD, but both groups are sufficiently represented for transcriptomic comparison.\n\nPrincipal-components analysis shows broad transcriptomic separation between primary tumors and solid-tissue-normal samples, indicating that the dominant axes of expression variance are strongly aligned with disease state.\n\n\n\n5.2 Differential-expression landscape\nThe volcano plot demonstrates widespread transcriptomic dysregulation, with clear tails of strongly upregulated and downregulated genes.\n\nThe heatmap of the most dysregulated genes shows that a relatively small gene set already produces clear visual separation between tumor and normal samples.\n\nThe table below lists the strongest differentially expressed genes identified by the pipeline.\n\n\n\n\n\n\n\n\n\ngene_symbol\nmean_tumor\nmean_normal\nlog2_fold_change\nt_statistic\np_value\nfdr\ncohens_d\nabs_log2_fc\n\n\n\n\n0\nCLDN18\n7.404636\n14.457229\n-7.052593\n-40.758742\n7.320556e-169\n1.500787e-164\n-2.059709\n7.052593\n\n\n1\nSFTPC\n10.406971\n18.965454\n-8.558483\n-39.874677\n2.762660e-167\n2.831865e-163\n-1.951361\n8.558483\n\n\n2\nLGI3\n4.206939\n10.844725\n-6.637786\n-45.939857\n2.207271e-162\n1.508375e-158\n-2.539104\n6.637786\n\n\n3\nCNTN6\n2.889496\n8.259534\n-5.370038\n-46.185181\n2.049225e-156\n1.050279e-152\n-2.598813\n5.370038\n\n\n4\nAGER\n8.652601\n15.411381\n-6.758781\n-50.218720\n1.769005e-154\n7.253274e-151\n-2.923187\n6.758781\n\n\n5\nCLIC5\n8.479337\n13.081861\n-4.602524\n-44.919868\n2.273172e-139\n7.767050e-136\n-2.626166\n4.602524\n\n\n6\nACADL\n4.543950\n8.967741\n-4.423791\n-37.958863\n1.868231e-134\n5.471514e-131\n-2.103787\n4.423791\n\n\n7\nAQP4\n9.082001\n13.765464\n-4.683463\n-31.924610\n7.138374e-128\n1.829297e-124\n-1.609469\n4.683463\n\n\n8\nONECUT1\n2.541521\n0.042049\n2.499472\n30.698023\n5.068339e-123\n1.154511e-119\n1.500466\n2.499472\n\n\n9\nSUSD2\n10.417093\n13.886183\n-3.469090\n-31.240147\n4.326115e-122\n8.868968e-119\n-1.609879\n3.469090\n\n\n10\nCAV1\n10.801736\n14.880941\n-4.079205\n-47.758141\n4.343999e-121\n8.096030e-118\n-3.033899\n4.079205\n\n\n11\nPEBP4\n6.216209\n10.981032\n-4.764823\n-31.890661\n2.370040e-119\n4.049016e-116\n-1.701748\n4.764823\n\n\n12\nTNNC1\n5.937319\n10.452093\n-4.514774\n-39.575868\n1.812889e-115\n2.858926e-112\n-2.395348\n4.514774\n\n\n13\nVEPH1\n6.506249\n10.162924\n-3.656675\n-33.374334\n2.227997e-113\n3.262583e-110\n-1.883855\n3.656675\n\n\n14\nADH1B\n8.418958\n13.285647\n-4.866689\n-32.214283\n9.046470e-113\n1.236411e-109\n-1.787546\n4.866689\n\n\n\n\n\n\n\n\n\n5.3 Tumor-versus-normal classification performance\nA sparse classifier trained on the top differential-expression features achieved the following cross-validated performance:\n\n\n\n\n\n\n\n\n\nn_features\nmean_roc_auc\nsd_roc_auc\nmean_average_precision\nsd_average_precision\n\n\n\n\n0\n50\n0.999026\n0.001778\n0.99989\n0.000202\n\n\n\n\n\n\n\n\nThis level of discrimination is expected for a high-signal tumor-versus-normal transcriptomic problem, but it is still useful because it demonstrates that the feature-selection stage captures biologically coherent disease-associated signal rather than noise.\n\n\n5.4 Candidate biomarker prioritization\n\n\n\n\n\n\n\n\n\navailable\ngene_symbol\nn_patients\nlogrank_p\nhazard_ratio\ncox_p\ntime_col\nstatus_col\ndiagnostic_auc\nlog2_fold_change\nfdr\ncohens_d\n\n\n\n\n0\nTrue\nLOC100131726\n499\n0.000375\n1.224378\n0.000004\nos_time\nos\n0.969261\n3.647157\n3.114328e-95\n2.133603\n\n\n\n\n\n\n\nWhen a survival-supported candidate is identified, the project generates a Kaplan–Meier plot using the top prioritized gene.\n\nIf stage information is available in the downloaded clinical matrix, the project also produces a stage-stratified expression plot for the same candidate biomarker.\n\n\n\n5.5 Pathway-level interpretation\nWhen enrichment analysis completes successfully, the project writes enrichment tables and pathway bar charts to the results directory. In most LUAD differential-expression analyses, one expects the strongest upregulated programs to involve proliferation, cell-cycle control, mitotic signaling, and oncogenic stress, while the strongest downregulated programs often reflect loss of normal alveolar or differentiated tissue identity (The Cancer Genome Atlas Research Network 2014). The enrichment step is designed to test whether that broad biological picture emerges from the present workflow."
+  },
+  {
+    "objectID": "index.html#discussion",
+    "href": "index.html#discussion",
+    "title": "Transcriptomic Biomarker Discovery in Lung Adenocarcinoma",
+    "section": "6 Discussion",
+    "text": "6 Discussion\nThis project shows how a public LUAD transcriptomic dataset can support a complete candidate-biomarker workflow rather than a single isolated analysis. First, global expression structure cleanly separates tumor and normal tissues. Second, the differential-expression screen yields a tractable ranked list of candidate genes, with effect sizes and multiple-testing correction reported explicitly. Third, a sparse classifier confirms that the selected features carry strong disease-discriminative information. Finally, survival screening adds an additional layer of prioritization by asking whether any of the most dysregulated genes also track with patient outcome.\nThat combination of analyses is important because candidate biomarkers are often proposed on the basis of dysregulation alone. In practice, however, translational prioritization benefits from integrating several lenses at once: diagnostic discrimination, pathway context, and clinical association. This workflow does not replace experimental validation, but it does mirror the logic of early-stage computational biomarker triage in translational oncology."
+  },
+  {
+    "objectID": "index.html#limitations",
+    "href": "index.html#limitations",
+    "title": "Transcriptomic Biomarker Discovery in Lung Adenocarcinoma",
+    "section": "7 Limitations",
+    "text": "7 Limitations\nSeveral limitations should be stated clearly. First, the LUAD HiSeqV2 matrix is distributed as log2-transformed normalized expression, so this project performs differential-expression screening on normalized values rather than a count-based negative-binomial model fit to raw counts. Second, TCGA normal samples are fewer than tumor samples, which is common in cancer transcriptomics and can affect both variance estimates and classifier stability. Third, any survival association identified here is observational and exploratory; it should be treated as a prioritization signal rather than as definitive evidence of prognostic utility. Finally, this workflow is restricted to transcriptomic data and does not integrate mutation, copy-number, methylation, or proteomic layers, all of which can further refine biomarker interpretation."
+  },
+  {
+    "objectID": "index.html#conclusion",
+    "href": "index.html#conclusion",
+    "title": "Transcriptomic Biomarker Discovery in Lung Adenocarcinoma",
+    "section": "8 Conclusion",
+    "text": "8 Conclusion\nThis publication-style project demonstrates a reproducible and biologically grounded workflow for transcriptomic biomarker discovery in lung adenocarcinoma. Using public TCGA LUAD RNA-seq data distributed through UCSC Xena, the analysis integrates differential-expression screening, pathway-level interpretation, classification, and survival-oriented prioritization into a single end-to-end pipeline. The resulting project is intended both as a serious computational biology case study and as a foundation for future extensions into multi-omic or experimentally validated biomarker work."
+  }
+]

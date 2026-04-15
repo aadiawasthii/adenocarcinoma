@@ -1,0 +1,26 @@
+body {
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.quarto-title-block .quarto-title-banner {
+  background: linear-gradient(90deg, #143d59 0%, #1f5c84 100%);
+}
+
+.quarto-title-block .title,
+.quarto-title-block .subtitle,
+.quarto-title-block .quarto-title-meta {
+  color: #ffffff;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+}
+
+table {
+  font-size: 0.96rem;
+}
+
+.callout {
+  border-left: 4px solid #1f5c84;
+}

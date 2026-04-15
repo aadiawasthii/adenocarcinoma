@@ -1,0 +1,53 @@
+---
+title: "Appendix"
+format:
+  html:
+    toc: true
+    css: styles.css
+execute:
+  echo: false
+  warning: false
+  message: false
+jupyter: python3
+---
+
+## Reproducibility notes
+
+The project is designed to run from a clean environment with Python 3.11+. The main analysis script downloads the public LUAD RNA-seq matrix, LUAD clinical matrix, and TCGA survival table from UCSC Xena endpoints, caches those files locally, and writes all downstream outputs into the `results/` directory.
+
+## Command-line workflow
+
+```bash
+python -m pip install -r requirements.txt
+quarto render
+```
+
+If you want to force a fresh data download, run:
+
+```bash
+python -m src.analysis --force-download
+```
+
+## Output files
+
+After a successful render, the key outputs are:
+
+- `results/tables/sample_summary.csv`
+- `results/tables/top_differential_expression.csv`
+- `results/tables/classifier_summary.csv`
+- `results/tables/top_biomarker.csv`
+- `results/figures/pca.png`
+- `results/figures/volcano.png`
+- `results/figures/heatmap_top_genes.png`
+- `results/figures/classifier_roc.png`
+- `results/figures/kaplan_meier_top_biomarker.png`
+
+## Extension ideas
+
+The project can be strengthened further by adding one or more of the following:
+
+1. validation in an external LUAD cohort from GEO;
+2. integration of mutation or copy-number data;
+3. gene-set scoring at the sample level;
+4. consensus feature selection across several classifier families;
+5. multi-omic follow-up using CPTAC LUAD proteomics.

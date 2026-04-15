@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "LUAD Transcriptomic Biomarker Discovery"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Paper
+      - href: appendix.qmd
+        text: Appendix
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+    code-fold: true
+    fig-cap-location: bottom
+    smooth-scroll: true

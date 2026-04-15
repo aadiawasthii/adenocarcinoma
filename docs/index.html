@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aadi Awasthi">
+<meta name="dcterms.date" content="2026-04-15">
+
+<title>Transcriptomic Biomarker Discovery in Lung Adenocarcinoma – LUAD Transcriptomic Biomarker Discovery</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">LUAD Transcriptomic Biomarker Discovery</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Paper</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./appendix.html"> 
+<span class="menu-text">Appendix</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract"><span class="header-section-number">1</span> Abstract</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">2</span> Introduction</a></li>
+  <li><a href="#data-and-cohort-construction" id="toc-data-and-cohort-construction" class="nav-link" data-scroll-target="#data-and-cohort-construction"><span class="header-section-number">3</span> Data and cohort construction</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">4</span> Methods</a>
+  <ul class="collapse">
+  <li><a href="#differential-expression-screening" id="toc-differential-expression-screening" class="nav-link" data-scroll-target="#differential-expression-screening"><span class="header-section-number">4.1</span> Differential-expression screening</a></li>
+  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification"><span class="header-section-number">4.2</span> Classification</a></li>
+  <li><a href="#candidate-biomarker-prioritization" id="toc-candidate-biomarker-prioritization" class="nav-link" data-scroll-target="#candidate-biomarker-prioritization"><span class="header-section-number">4.3</span> Candidate-biomarker prioritization</a></li>
+  <li><a href="#pathway-enrichment" id="toc-pathway-enrichment" class="nav-link" data-scroll-target="#pathway-enrichment"><span class="header-section-number">4.4</span> Pathway enrichment</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">5</span> Results</a>
+  <ul class="collapse">
+  <li><a href="#global-separation-between-tumor-and-normal-samples" id="toc-global-separation-between-tumor-and-normal-samples" class="nav-link" data-scroll-target="#global-separation-between-tumor-and-normal-samples"><span class="header-section-number">5.1</span> Global separation between tumor and normal samples</a></li>
+  <li><a href="#differential-expression-landscape" id="toc-differential-expression-landscape" class="nav-link" data-scroll-target="#differential-expression-landscape"><span class="header-section-number">5.2</span> Differential-expression landscape</a></li>
+  <li><a href="#tumor-versus-normal-classification-performance" id="toc-tumor-versus-normal-classification-performance" class="nav-link" data-scroll-target="#tumor-versus-normal-classification-performance"><span class="header-section-number">5.3</span> Tumor-versus-normal classification performance</a></li>
+  <li><a href="#candidate-biomarker-prioritization-1" id="toc-candidate-biomarker-prioritization-1" class="nav-link" data-scroll-target="#candidate-biomarker-prioritization-1"><span class="header-section-number">5.4</span> Candidate biomarker prioritization</a></li>
+  <li><a href="#pathway-level-interpretation" id="toc-pathway-level-interpretation" class="nav-link" data-scroll-target="#pathway-level-interpretation"><span class="header-section-number">5.5</span> Pathway-level interpretation</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">6</span> Discussion</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">7</span> Limitations</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">8</span> Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Transcriptomic Biomarker Discovery in Lung Adenocarcinoma</h1>
+<p class="subtitle lead">A reproducible TCGA RNA-seq analysis integrating differential expression, pathway enrichment, classification, and survival modeling</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aadi Awasthi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 15, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="abstract" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="abstract"><span class="header-section-number">1</span> Abstract</h2>
+<p>Lung adenocarcinoma is the most common histologic subtype of lung cancer and remains a major cause of cancer mortality worldwide <span class="citation" data-cites="luad2014">(<a href="#ref-luad2014" role="doc-biblioref">The Cancer Genome Atlas Research Network 2014</a>)</span>. Public transcriptomic resources have made it possible to study disease-associated expression programs at scale, yet many student projects stop at simple visual summaries rather than building a complete and reproducible analysis pipeline. This project develops a publication-style workflow around TCGA lung adenocarcinoma RNA-seq data distributed through UCSC Xena, integrating tumor-versus-normal differential-expression screening, pathway enrichment, cross-validated classification, and survival-oriented candidate prioritization <span class="citation" data-cites="xena2020 tcga_program samplecodes">(<a href="#ref-xena2020" role="doc-biblioref"><span class="nocase">Goldman et al.</span> 2020</a>; <a href="#ref-tcga_program" role="doc-biblioref"><span class="nocase">Weinstein et al.</span> 2013</a>; <a href="#ref-samplecodes" role="doc-biblioref">National Cancer Institute Genomic Data Commons 2026a</a>)</span>. The goal is not to claim a clinically validated biomarker from a single open dataset, but to demonstrate how public cancer transcriptomic data can be translated into a coherent biomarker-discovery workflow with transparent methods and interpretable outputs.</p>
+</section>
+<section id="introduction" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2</span> Introduction</h2>
+<p>The Cancer Genome Atlas (TCGA) transformed cancer research by generating molecular profiles across dozens of tumor types and matched normal samples, enabling systematic characterization of tumor-associated transcriptomic programs <span class="citation" data-cites="tcga_program">(<a href="#ref-tcga_program" role="doc-biblioref"><span class="nocase">Weinstein et al.</span> 2013</a>)</span>. Within TCGA, lung adenocarcinoma (LUAD) emerged as a biologically heterogeneous disease marked by recurrent alterations in receptor tyrosine kinase, RAS, and PI3K pathway signaling, together with substantial variation in gene-expression states and clinical outcomes <span class="citation" data-cites="luad2014">(<a href="#ref-luad2014" role="doc-biblioref">The Cancer Genome Atlas Research Network 2014</a>)</span>. As a result, LUAD remains a strong setting in which to test computational workflows for candidate biomarker discovery.</p>
+<p>For internship- and research-oriented work, the most useful project is not simply one that runs, but one that mirrors how real translational analyses are assembled. That means acquiring public molecular and clinical data, carrying out differential analysis with appropriate transparency about data scale and preprocessing, identifying pathway-level structure rather than only single-gene changes, and asking whether the most discriminative genes also carry prognostic relevance. This project was built to do exactly that: take a biologically meaningful cancer question and turn it into a reproducible end-to-end transcriptomic workflow.</p>
+<p>The present analysis asks a focused question: <strong>which transcriptomic features best distinguish lung adenocarcinoma from matched normal tissue in TCGA, and can any of those features be prioritized as plausible biomarker candidates on both diagnostic and prognostic grounds?</strong></p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+</div>
+<div class="callout-title-container flex-fill">
+Portfolio Snapshot
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Cohort scale:</strong> 515 primary tumors and 59 solid-tissue-normal samples from TCGA LUAD.</li>
+<li><strong>Analysis depth:</strong> differential expression, PCA, pathway enrichment, sparse classification, and survival-based biomarker prioritization in one reproducible workflow.</li>
+<li><strong>Model signal:</strong> repeated cross-validated ROC AUC of <strong>0.999</strong> and average precision of <strong>1.000</strong>.</li>
+<li><strong>Featured interpretable candidate:</strong> <strong>ERO1L</strong>, with hazard ratio <strong>1.40</strong> and log-rank p-value <strong>7.19e-04</strong>.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="data-and-cohort-construction" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="data-and-cohort-construction"><span class="header-section-number">3</span> Data and cohort construction</h2>
+<p>This project uses publicly available LUAD RNA-seq and clinical resources distributed through UCSC Xena and the NCI Genomic Data Commons <span class="citation" data-cites="xena2020 samplecodes">(<a href="#ref-xena2020" role="doc-biblioref"><span class="nocase">Goldman et al.</span> 2020</a>; <a href="#ref-samplecodes" role="doc-biblioref">National Cancer Institute Genomic Data Commons 2026a</a>)</span>. The expression matrix is the LUAD <code>HiSeqV2</code> dataset from UCSC Xena, which has been described in Xena-linked documentation and downstream studies as <strong>log2-transformed RSEM-normalized counts</strong> <span class="citation" data-cites="xena_hiseq_unit oncotarget_luad">(<a href="#ref-xena_hiseq_unit" role="doc-biblioref">Wang and Liu 2019</a>; <a href="#ref-oncotarget_luad" role="doc-biblioref"><span class="nocase">Givechian et al.</span> 2019</a>)</span>. Sample groups were defined by TCGA barcode sample-type conventions, where code <code>01</code> indicates primary solid tumor and code <code>11</code> indicates solid tissue normal <span class="citation" data-cites="samplecodes gdc_barcode">(<a href="#ref-samplecodes" role="doc-biblioref">National Cancer Institute Genomic Data Commons 2026a</a>, <a href="#ref-gdc_barcode" role="doc-biblioref">2026b</a>)</span>. Overall-survival information was obtained from the UCSC Xena <code>TCGA_survival_data</code> resource, which curates event status and time-to-event variables derived from TCGA clinical information <span class="citation" data-cites="tcga_survival_curated">(<a href="#ref-tcga_survival_curated" role="doc-biblioref">UCSC Cancer Genomics Browser team 2013</a>)</span>.</p>
+<p>The analytic cohort retained only LUAD primary-tumor and solid-tissue-normal samples.</p>
+<div id="525a9881" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sample_type</th>
+<th data-quarto-table-cell-role="th">samples</th>
+<th data-quarto-table-cell-role="th">patients</th>
+<th data-quarto-table-cell-role="th">non_missing_stage_annotations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Primary tumor</td>
+<td>515</td>
+<td>515</td>
+<td>574</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Solid tissue normal</td>
+<td>59</td>
+<td>59</td>
+<td>117</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="methods" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="methods"><span class="header-section-number">4</span> Methods</h2>
+<section id="differential-expression-screening" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="differential-expression-screening"><span class="header-section-number">4.1</span> Differential-expression screening</h3>
+<p>Because the LUAD <code>HiSeqV2</code> matrix is distributed as log2-transformed normalized expression rather than raw counts, the present workflow uses transparent screening-style differential analysis on normalized expression values rather than a count-based DESeq2 model. For each gene, tumor and normal samples were compared using Welch’s t-test, and resulting p-values were adjusted using the Benjamini–Hochberg false-discovery-rate procedure. Effect sizes were summarized as tumor-normal log2 expression differences and Cohen’s (d).</p>
+<p>Genes were treated as strongly dysregulated when they satisfied both an FDR threshold below 0.05 and an absolute tumor-normal log2 difference greater than 1.0.</p>
+</section>
+<section id="classification" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="classification"><span class="header-section-number">4.2</span> Classification</h3>
+<p>To test whether the transcriptomic signal was sufficiently strong to discriminate tumor from normal tissue, a sparse logistic-regression classifier was trained on the top differentially expressed genes. Model performance was estimated with repeated stratified cross-validation using ROC AUC and average precision.</p>
+</section>
+<section id="candidate-biomarker-prioritization" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="candidate-biomarker-prioritization"><span class="header-section-number">4.3</span> Candidate-biomarker prioritization</h3>
+<p>The pipeline next asked whether any of the strongest upregulated genes also carried prognostic information. Candidate genes were screened among the most significant overexpressed transcripts, merged with TCGA survival information at the patient level, and evaluated by log-rank testing and one-gene Cox proportional-hazards models. This step does not constitute clinical validation, but it helps distinguish genes that are merely dysregulated from genes that may also track with patient outcome.</p>
+<p>For interpretability, the highlighted lead candidate is chosen from biologically interpretable named genes rather than uncharacterized <code>LOC</code> or open-reading-frame placeholders. The full ranked survival table remains available in the results directory for transparency.</p>
+</section>
+<section id="pathway-enrichment" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="pathway-enrichment"><span class="header-section-number">4.4</span> Pathway enrichment</h3>
+<p>To move beyond single-gene summaries, the top upregulated and downregulated gene sets were optionally submitted to Enrichr for pathway and biological-process enrichment <span class="citation" data-cites="enrichr2016 enrichr2021">(<a href="#ref-enrichr2016" role="doc-biblioref"><span class="nocase">Kuleshov et al.</span> 2016</a>; <a href="#ref-enrichr2021" role="doc-biblioref"><span class="nocase">Xie et al.</span> 2021</a>)</span>. This step is coded to run automatically when an internet connection is available at render time.</p>
+</section>
+</section>
+<section id="results" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="results"><span class="header-section-number">5</span> Results</h2>
+<section id="global-separation-between-tumor-and-normal-samples" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="global-separation-between-tumor-and-normal-samples"><span class="header-section-number">5.1</span> Global separation between tumor and normal samples</h3>
+<p>The sample-composition plot confirms the expected imbalance between tumor and normal tissues in TCGA LUAD, but both groups are sufficiently represented for transcriptomic comparison.</p>
+<p><img src="results/figures/sample_counts.png" class="img-fluid" alt="Bar chart of LUAD sample counts by tumor and normal groups."></p>
+<p>Principal-components analysis shows broad transcriptomic separation between primary tumors and solid-tissue-normal samples, indicating that the dominant axes of expression variance are strongly aligned with disease state.</p>
+<p><img src="results/figures/pca.png" class="img-fluid" alt="PCA scatter plot separating LUAD tumor and normal samples."></p>
+</section>
+<section id="differential-expression-landscape" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="differential-expression-landscape"><span class="header-section-number">5.2</span> Differential-expression landscape</h3>
+<p>The volcano plot demonstrates widespread transcriptomic dysregulation, with clear tails of strongly upregulated and downregulated genes.</p>
+<p><img src="results/figures/volcano.png" class="img-fluid" alt="Volcano plot of tumor-normal differential expression in LUAD."></p>
+<p>The heatmap of the most dysregulated genes shows that a relatively small gene set already produces clear visual separation between tumor and normal samples.</p>
+<p><img src="results/figures/heatmap_top_genes.png" class="img-fluid" alt="Heatmap of top dysregulated genes in LUAD."></p>
+<p>The table below lists the strongest differentially expressed genes identified by the pipeline.</p>
+<div id="a607fe57" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">gene_symbol</th>
+<th data-quarto-table-cell-role="th">mean_tumor</th>
+<th data-quarto-table-cell-role="th">mean_normal</th>
+<th data-quarto-table-cell-role="th">log2_fold_change</th>
+<th data-quarto-table-cell-role="th">t_statistic</th>
+<th data-quarto-table-cell-role="th">p_value</th>
+<th data-quarto-table-cell-role="th">fdr</th>
+<th data-quarto-table-cell-role="th">cohens_d</th>
+<th data-quarto-table-cell-role="th">abs_log2_fc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>CLDN18</td>
+<td>7.404636</td>
+<td>14.457229</td>
+<td>-7.052593</td>
+<td>-40.758742</td>
+<td>7.320556e-169</td>
+<td>1.500787e-164</td>
+<td>-2.059709</td>
+<td>7.052593</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>SFTPC</td>
+<td>10.406971</td>
+<td>18.965454</td>
+<td>-8.558483</td>
+<td>-39.874677</td>
+<td>2.762660e-167</td>
+<td>2.831865e-163</td>
+<td>-1.951361</td>
+<td>8.558483</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>LGI3</td>
+<td>4.206939</td>
+<td>10.844725</td>
+<td>-6.637786</td>
+<td>-45.939857</td>
+<td>2.207271e-162</td>
+<td>1.508375e-158</td>
+<td>-2.539104</td>
+<td>6.637786</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>CNTN6</td>
+<td>2.889496</td>
+<td>8.259534</td>
+<td>-5.370038</td>
+<td>-46.185181</td>
+<td>2.049225e-156</td>
+<td>1.050279e-152</td>
+<td>-2.598813</td>
+<td>5.370038</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>AGER</td>
+<td>8.652601</td>
+<td>15.411381</td>
+<td>-6.758781</td>
+<td>-50.218720</td>
+<td>1.769005e-154</td>
+<td>7.253274e-151</td>
+<td>-2.923187</td>
+<td>6.758781</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>CLIC5</td>
+<td>8.479337</td>
+<td>13.081861</td>
+<td>-4.602524</td>
+<td>-44.919868</td>
+<td>2.273172e-139</td>
+<td>7.767050e-136</td>
+<td>-2.626166</td>
+<td>4.602524</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>ACADL</td>
+<td>4.543950</td>
+<td>8.967741</td>
+<td>-4.423791</td>
+<td>-37.958863</td>
+<td>1.868231e-134</td>
+<td>5.471514e-131</td>
+<td>-2.103787</td>
+<td>4.423791</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>AQP4</td>
+<td>9.082001</td>
+<td>13.765464</td>
+<td>-4.683463</td>
+<td>-31.924610</td>
+<td>7.138374e-128</td>
+<td>1.829297e-124</td>
+<td>-1.609469</td>
+<td>4.683463</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>ONECUT1</td>
+<td>2.541521</td>
+<td>0.042049</td>
+<td>2.499472</td>
+<td>30.698023</td>
+<td>5.068339e-123</td>
+<td>1.154511e-119</td>
+<td>1.500466</td>
+<td>2.499472</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>SUSD2</td>
+<td>10.417093</td>
+<td>13.886183</td>
+<td>-3.469090</td>
+<td>-31.240147</td>
+<td>4.326115e-122</td>
+<td>8.868968e-119</td>
+<td>-1.609879</td>
+<td>3.469090</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">10</th>
+<td>CAV1</td>
+<td>10.801736</td>
+<td>14.880941</td>
+<td>-4.079205</td>
+<td>-47.758141</td>
+<td>4.343999e-121</td>
+<td>8.096030e-118</td>
+<td>-3.033899</td>
+<td>4.079205</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>PEBP4</td>
+<td>6.216209</td>
+<td>10.981032</td>
+<td>-4.764823</td>
+<td>-31.890661</td>
+<td>2.370040e-119</td>
+<td>4.049016e-116</td>
+<td>-1.701748</td>
+<td>4.764823</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12</th>
+<td>TNNC1</td>
+<td>5.937319</td>
+<td>10.452093</td>
+<td>-4.514774</td>
+<td>-39.575868</td>
+<td>1.812889e-115</td>
+<td>2.858926e-112</td>
+<td>-2.395348</td>
+<td>4.514774</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">13</th>
+<td>VEPH1</td>
+<td>6.506249</td>
+<td>10.162924</td>
+<td>-3.656675</td>
+<td>-33.374334</td>
+<td>2.227997e-113</td>
+<td>3.262583e-110</td>
+<td>-1.883855</td>
+<td>3.656675</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">14</th>
+<td>ADH1B</td>
+<td>8.418958</td>
+<td>13.285647</td>
+<td>-4.866689</td>
+<td>-32.214283</td>
+<td>9.046470e-113</td>
+<td>1.236411e-109</td>
+<td>-1.787546</td>
+<td>4.866689</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="tumor-versus-normal-classification-performance" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="tumor-versus-normal-classification-performance"><span class="header-section-number">5.3</span> Tumor-versus-normal classification performance</h3>
+<p>A sparse classifier trained on the top differential-expression features achieved the following cross-validated performance:</p>
+<div id="85da1ef8" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">n_features</th>
+<th data-quarto-table-cell-role="th">mean_roc_auc</th>
+<th data-quarto-table-cell-role="th">sd_roc_auc</th>
+<th data-quarto-table-cell-role="th">mean_average_precision</th>
+<th data-quarto-table-cell-role="th">sd_average_precision</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>50</td>
+<td>0.999026</td>
+<td>0.001778</td>
+<td>0.99989</td>
+<td>0.000202</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><img src="results/figures/classifier_roc.png" class="img-fluid" alt="Cross-validated ROC curve for LUAD tumor-normal classifier."></p>
+<p>This level of discrimination is expected for a high-signal tumor-versus-normal transcriptomic problem, but it is still useful because it demonstrates that the feature-selection stage captures biologically coherent disease-associated signal rather than noise.</p>
+</section>
+<section id="candidate-biomarker-prioritization-1" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="candidate-biomarker-prioritization-1"><span class="header-section-number">5.4</span> Candidate biomarker prioritization</h3>
+<div id="b702e0fc" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">available</th>
+<th data-quarto-table-cell-role="th">gene_symbol</th>
+<th data-quarto-table-cell-role="th">n_patients</th>
+<th data-quarto-table-cell-role="th">logrank_p</th>
+<th data-quarto-table-cell-role="th">hazard_ratio</th>
+<th data-quarto-table-cell-role="th">cox_p</th>
+<th data-quarto-table-cell-role="th">time_col</th>
+<th data-quarto-table-cell-role="th">status_col</th>
+<th data-quarto-table-cell-role="th">diagnostic_auc</th>
+<th data-quarto-table-cell-role="th">log2_fold_change</th>
+<th data-quarto-table-cell-role="th">fdr</th>
+<th data-quarto-table-cell-role="th">cohens_d</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>True</td>
+<td>ERO1L</td>
+<td>499</td>
+<td>0.000719</td>
+<td>1.398207</td>
+<td>0.000001</td>
+<td>os_time</td>
+<td>os</td>
+<td>0.966398</td>
+<td>1.806549</td>
+<td>7.880080e-92</td>
+<td>1.798770</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>When a survival-supported candidate is identified, the project generates a Kaplan–Meier plot using the top prioritized gene.</p>
+<p><img src="results/figures/kaplan_meier_top_biomarker.png" class="img-fluid" alt="Kaplan-Meier plot for the top survival-supported LUAD biomarker candidate."></p>
+<p>If stage information is available in the downloaded clinical matrix, the project also produces a stage-stratified expression plot for the same candidate biomarker.</p>
+<p><img src="results/figures/stage_boxplot_top_biomarker.png" class="img-fluid" alt="Stage-stratified expression plot for the top LUAD biomarker candidate."></p>
+</section>
+<section id="pathway-level-interpretation" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="pathway-level-interpretation"><span class="header-section-number">5.5</span> Pathway-level interpretation</h3>
+<p>When enrichment analysis completes successfully, the project writes enrichment tables and pathway bar charts to the results directory. In most LUAD differential-expression analyses, one expects the strongest upregulated programs to involve proliferation, cell-cycle control, mitotic signaling, and oncogenic stress, while the strongest downregulated programs often reflect loss of normal alveolar or differentiated tissue identity <span class="citation" data-cites="luad2014">(<a href="#ref-luad2014" role="doc-biblioref">The Cancer Genome Atlas Research Network 2014</a>)</span>. The enrichment step is designed to test whether that broad biological picture emerges from the present workflow.</p>
+<p><em>Pathway enrichment plots were not generated in this build, likely because the Enrichr request was unavailable at render time. The differential-expression, classification, and survival analyses above are fully available.</em></p>
+</section>
+</section>
+<section id="discussion" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="discussion"><span class="header-section-number">6</span> Discussion</h2>
+<p>This project shows how a public LUAD transcriptomic dataset can support a complete candidate-biomarker workflow rather than a single isolated analysis. First, global expression structure cleanly separates tumor and normal tissues. Second, the differential-expression screen yields a tractable ranked list of candidate genes, with effect sizes and multiple-testing correction reported explicitly. Third, a sparse classifier confirms that the selected features carry strong disease-discriminative information. Finally, survival screening adds an additional layer of prioritization by asking whether any of the most dysregulated genes also track with patient outcome.</p>
+<p>That combination of analyses is important because candidate biomarkers are often proposed on the basis of dysregulation alone. In practice, however, translational prioritization benefits from integrating several lenses at once: diagnostic discrimination, pathway context, and clinical association. This workflow does not replace experimental validation, but it does mirror the logic of early-stage computational biomarker triage in translational oncology.</p>
+</section>
+<section id="limitations" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="limitations"><span class="header-section-number">7</span> Limitations</h2>
+<p>Several limitations should be stated clearly. First, the LUAD <code>HiSeqV2</code> matrix is distributed as log2-transformed normalized expression, so this project performs differential-expression <strong>screening</strong> on normalized values rather than a count-based negative-binomial model fit to raw counts. Second, TCGA normal samples are fewer than tumor samples, which is common in cancer transcriptomics and can affect both variance estimates and classifier stability. Third, any survival association identified here is observational and exploratory; it should be treated as a prioritization signal rather than as definitive evidence of prognostic utility. Finally, this workflow is restricted to transcriptomic data and does not integrate mutation, copy-number, methylation, or proteomic layers, all of which can further refine biomarker interpretation.</p>
+</section>
+<section id="conclusion" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">8</span> Conclusion</h2>
+<p>This publication-style project demonstrates a reproducible and biologically grounded workflow for transcriptomic biomarker discovery in lung adenocarcinoma. Using public TCGA LUAD RNA-seq data distributed through UCSC Xena, the analysis integrates differential-expression screening, pathway-level interpretation, classification, and survival-oriented prioritization into a single end-to-end pipeline. The resulting project is intended both as a serious computational biology case study and as a foundation for future extensions into multi-omic or experimentally validated biomarker work.</p>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-oncotarget_luad" class="csl-entry" role="listitem">
+<span class="nocase">Givechian, Kevin B. et al.</span> 2019. <span>“An Immunogenic <span>NSCLC</span> Microenvironment Is Associated with a Favorable Prognosis in Lung Adenocarcinoma.”</span> <em>Oncotarget</em> 10 (19): 1846–59. <a href="https://doi.org/10.18632/oncotarget.26748">https://doi.org/10.18632/oncotarget.26748</a>.
+</div>
+<div id="ref-xena2020" class="csl-entry" role="listitem">
+<span class="nocase">Goldman, Mary J., Brian Craft, Michael Hastie, et al.</span> 2020. <span>“Visualizing and Interpreting Cancer Genomics Data via the Xena Platform.”</span> <em>Nature Biotechnology</em> 38 (6): 675–78. <a href="https://doi.org/10.1038/s41587-020-0546-8">https://doi.org/10.1038/s41587-020-0546-8</a>.
+</div>
+<div id="ref-enrichr2016" class="csl-entry" role="listitem">
+<span class="nocase">Kuleshov, Maxim V., Matthew R. Jones, Andrew D. Rouillard, et al.</span> 2016. <span>“Enrichr: A Comprehensive Gene Set Enrichment Analysis Web Server 2016 Update.”</span> <em>Nucleic Acids Research</em> 44 (W1): W90–97. <a href="https://doi.org/10.1093/nar/gkw377">https://doi.org/10.1093/nar/gkw377</a>.
+</div>
+<div id="ref-samplecodes" class="csl-entry" role="listitem">
+National Cancer Institute Genomic Data Commons. 2026a. <em>Sample Type Codes</em>. GDC Code Tables. <a href="https://gdc.cancer.gov/resources-tcga-users/tcga-code-tables/sample-type-codes">https://gdc.cancer.gov/resources-tcga-users/tcga-code-tables/sample-type-codes</a>.
+</div>
+<div id="ref-gdc_barcode" class="csl-entry" role="listitem">
+National Cancer Institute Genomic Data Commons. 2026b. <em>TCGA Barcode</em>. GDC Documentation. <a href="https://docs.gdc.cancer.gov/Encyclopedia/pages/TCGA_Barcode/">https://docs.gdc.cancer.gov/Encyclopedia/pages/TCGA_Barcode/</a>.
+</div>
+<div id="ref-luad2014" class="csl-entry" role="listitem">
+The Cancer Genome Atlas Research Network. 2014. <span>“Comprehensive Molecular Profiling of Lung Adenocarcinoma.”</span> <em>Nature</em> 511 (7511): 543–50. <a href="https://doi.org/10.1038/nature13385">https://doi.org/10.1038/nature13385</a>.
+</div>
+<div id="ref-tcga_survival_curated" class="csl-entry" role="listitem">
+UCSC Cancer Genomics Browser team. 2013. <em>How Do We Curate <span>TCGA</span> Survival Information, Which Is Used for the <span>KM</span> Plot?</em> UCSC Cancer Genomics Browser Google Group. <a href="https://groups.google.com/g/ucsc-cancer-genomics-browser/c/YvKnWZSsw1Q">https://groups.google.com/g/ucsc-cancer-genomics-browser/c/YvKnWZSsw1Q</a>.
+</div>
+<div id="ref-xena_hiseq_unit" class="csl-entry" role="listitem">
+Wang, Shixiang, and Yu Liu. 2019. <span>“UCSCXenaTools: An <span>R</span>/<span>CRAN</span> Package for Downloading and Exploring Data from UCSC Xena Data Hubs.”</span> <em>Journal of Open Source Software</em> 4 (40): 1627. <a href="https://doi.org/10.21105/joss.01627">https://doi.org/10.21105/joss.01627</a>.
+</div>
+<div id="ref-tcga_program" class="csl-entry" role="listitem">
+<span class="nocase">Weinstein, John N., Eric A. Collisson, Gordon B. Mills, et al.</span> 2013. <span>“The Cancer Genome Atlas Pan-Cancer Analysis Project.”</span> <em>Nature Genetics</em> 45 (10): 1113–20. <a href="https://doi.org/10.1038/ng.2764">https://doi.org/10.1038/ng.2764</a>.
+</div>
+<div id="ref-enrichr2021" class="csl-entry" role="listitem">
+<span class="nocase">Xie, Zichen, Alan Bailey, Maxim V. Kuleshov, et al.</span> 2021. <span>“Gene Set Knowledge Discovery with Enrichr.”</span> <em>Current Protocols</em> 1 (3): e90. <a href="https://doi.org/10.1002/cpz1.90">https://doi.org/10.1002/cpz1.90</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

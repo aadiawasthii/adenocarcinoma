@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+results/
+data/raw/
+data/processed/
+docs/site_libs/
+
+/.quarto/
+**/*.quarto_ipynb
