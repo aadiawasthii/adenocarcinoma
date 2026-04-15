@@ -1,6 +1,12 @@
 .venv/
 __pycache__/
 .ipynb_checkpoints/
+.ipython/
+.matplotlib/
+Library/
+docs-enhanced/
+docs-original/
+index_files/
 results/
 data/raw/
 data/processed/
