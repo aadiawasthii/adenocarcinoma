@@ -1,0 +1,2 @@
+available,gene_symbol,n_patients,logrank_p,hazard_ratio,cox_p,time_col,status_col,selection_strategy,diagnostic_auc,log2_fold_change,fdr,cohens_d
+True,ERO1L,499,0.0007190902423245364,1.3982065993293906,1.234594588779291e-06,os_time,os,interpretable_named_genes,0.966397893697548,1.8065491525423738,7.880079807600904e-92,1.7987696057723412

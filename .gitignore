@@ -14,3 +14,7 @@ docs/site_libs/
 
 /.quarto/
 **/*.quarto_ipynb
+!docs/results/
+!docs/results/**
+!docs/site_libs/
+!docs/site_libs/**
